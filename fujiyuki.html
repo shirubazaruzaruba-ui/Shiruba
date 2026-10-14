@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fujiyuki Kurushima Ryuichizuki</title>
+    <style>
+        /* ===== RESET ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ===== BODY ===== */
+        body {
+            background: #FFFFFF;
+            font-family: 'Georgia', serif;
+            color: #2a2a3a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* ===== ANIMASI GLOBAL ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 10px 30px rgba(255, 220, 100, 0.4); }
+            50% { box-shadow: 0 15px 45px rgba(255, 220, 100, 0.7); }
+        }
+
+        @keyframes geserHalus {
+            0%, 100% { transform: translateX(-3px); }
+            50% { transform: translateX(3px); }
+        }
+
+        @keyframes putarPelan {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes masukFoto {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ===== POSTER ===== */
+        .poster {
+            width: 100%;
+            max-width: 420px;
+            background: #FFFFFF;
+            border: 3px solid #FFE4A0;
+            border-radius: 25px;
+            padding: 35px 25px;
+            box-shadow:
+                0 15px 40px rgba(255, 220, 100, 0.35),
+                0 5px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease both;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .poster:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 20px 50px rgba(255, 220, 100, 0.5),
+                0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ===== EFEK DEKORATIF ===== */
+        .poster::before {
+            content: "";
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(255, 228, 160, 0.5), transparent 70%);
+            border-radius: 50%;
+            animation: putarPelan 20s linear infinite;
+        }
+
+        .poster::after {
+            content: "";
+            position: absolute;
+            bottom: -40px;
+            left: -40px;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, rgba(255, 228, 160, 0.4), transparent 70%);
+            border-radius: 50%;
+            animation: putarPelan 15s linear infinite reverse;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 25px;
+        }
+
+        .foto-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 18px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .foto-wrapper img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid #FFE4A0;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            animation: masukFoto 1.2s ease both, glow 3s ease-in-out infinite;
+            background: #FFF8E0;
+        }
+
+        .foto-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 228, 160, 0.6), transparent 70%);
+            animation: float 3s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            color: #2a2a3a;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            line-height: 1.3;
+            animation: geserHalus 4s ease-in-out infinite;
+        }
+
+        .header .sub {
+            font-size: 11px;
+            color: #B8A060;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* ===== INFO BOX ===== */
+        .info-box {
+            background: #FFFDF5;
+            border-left: 4px solid #FFE4A0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(255, 220, 100, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease both;
+        }
+
+        .info-box:nth-child(2) { animation-delay: 0.1s; }
+        .info-box:nth-child(3) { animation-delay: 0.2s; }
+        .info-box:nth-child(4) { animation-delay: 0.3s; }
+        .info-box:nth-child(5) { animation-delay: 0.4s; }
+        .info-box:nth-child(6) { animation-delay: 0.5s; }
+
+        .info-box:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 18px rgba(255, 220, 100, 0.3);
+        }
+
+        .info-box h3 {
+            font-size: 10px;
+            color: #B8A060;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .info-box p {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .info-box .highlight {
+            color: #E0A800;
+            font-weight: bold;
+        }
+
+        /* ===== TAG ===== */
+        .tag {
+            display: inline-block;
+            background: #FFF8E0;
+            color: #B8A060;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 10px;
+            margin: 3px 4px 3px 0;
+            border: 1.5px solid #FFE4A0;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #FFE4A0;
+            color: #7a6030;
+            transform: scale(1.05);
+        }
+
+        /* ===== QUOTE ===== */
+        .quote {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+            font-size: 13px;
+            margin: 25px 0;
+            position: relative;
+            z-index: 2;
+            padding: 15px 20px;
+            background: #FFFDF5;
+            border-radius: 15px;
+            border: 2px dashed #FFE4A0;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .quote::before {
+            content: "❝";
+            color: #E0A800;
+            font-size: 22px;
+            margin-right: 5px;
+        }
+
+        .quote::after {
+            content: "❞";
+            color: #E0A800;
+            font-size: 22px;
+            margin-left: 5px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            font-size: 10px;
+            color: #B8A060;
+            letter-spacing: 4px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+            font-weight: 600;
+            animation: fadeInUp 1s ease 0.7s both;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 450px) {
+            .poster { padding: 25px 18px; border-radius: 20px; }
+            .foto-wrapper img { width: 110px; height: 110px; }
+            .foto-wrapper::before { width: 130px; height: 130px; }
+            .header h1 { font-size: 17px; }
+            .info-box p { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="foto-wrapper">
+                <img src="https://i.supaimg.com/32a87b63-a0ca-44b4-bb93-38b24c69a869/d131dd74-cd26-4afa-8b47-843378d4645a.jpg" alt="Fujiyuki">
+            </div>
+            <h1>FUJIYUKI<br>KURUSHIMA RYUICHIZUKI</h1>
+            <p class="sub">Character Profile</p>
+        </div>
+
+        <!-- DATA DIRI -->
+        <div class="info-box">
+            <h3>📋 Data Diri</h3>
+            <p>
+                <span class="highlight">Usia:</span> 18 tahun<br>
+                <span class="highlight">Lahir:</span> 02 April<br>
+                <span class="highlight">Gender:</span> Interseks & Androgini<br>
+                <span class="highlight">Sekolah:</span> SMKN 1 Sakura — Kelas 12-3
+            </p>
+        </div>
+
+        <!-- KEPRIBADIAN -->
+        <div class="info-box">
+            <h3>🎭 Kepribadian</h3>
+            <p>Kompleks, lugu, kikuk, susah ditebak, liar, dan absurd.</p>
+            <div style="margin-top: 10px;">
+                <span class="tag">Lugu</span>
+                <span class="tag">Kikuk</span>
+                <span class="tag">Liar</span>
+                <span class="tag">Absurd</span>
+                <span class="tag">Susah Ditebak</span>
+            </div>
+        </div>
+
+        <!-- HOBI -->
+        <div class="info-box">
+            <h3>✨ Hobi</h3>
+            <p>Memasak • Menari • Sulap • Berkarya Digital & Seni</p>
+        </div>
+
+        <!-- KELUARGA -->
+        <div class="info-box">
+            <h3>👨‍👩‍👧‍👦 Keluarga</h3>
+            <p>
+                <span class="highlight">Status:</span> Yatim Piatu<br>
+                <span class="highlight">Kakak Lk:</span> Fujiyurei (30)<br>
+                <span class="highlight">Adik Lk:</span> Fujiyuka (17)<br>
+                <span class="highlight">Adik Pr:</span> Fujiyurel (16)
+            </p>
+        </div>
+
+        <!-- CIRI KHAS -->
+        <div class="info-box">
+            <h3>💬 Ciri Khas</h3>
+            <p>
+                Selalu mengucapkan <span class="highlight">"Hh.."</span> di awal, tengah, maupun akhir percakapan.
+            </p>
+        </div>
+
+        <!-- QUOTE -->
+        <div class="quote">
+            Hh.. aku... nggak tau harus ngomong apa.. Hh..
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            SHIRUBA — CHARACTER FILE 001
+        </div>
+    </div>
+</body>
+</html>
